@@ -1,0 +1,9 @@
+name: Message Sender
+description: Facilitates sending slack messages
+inputs:
+  channel:
+    required: true
+    description: Slack channel to send message to
+runs:
+  using: node16
+  main: invoke-binary.js

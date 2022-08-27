@@ -11,9 +11,9 @@ function chooseBinary() {
     if (platform === 'linux' && arch === 'x64') {
         return `main-linux-amd64-${VERSION}`
     }
-    // if (platform === 'linux' && arch === 'arm64') {
-    //     return `main-linux-arm64-${VERSION}`
-    // }
+    if (platform === 'linux' && arch === 'arm64') {
+        return `main-linux-arm64-${VERSION}`
+    }
     // if (platform === 'windows' && arch === 'x64') {
     //     return `main-windows-amd64-${VERSION}`
     // }

@@ -11,7 +11,7 @@ inputs:
   dump_event:
     required: false
     default: 'false'
-    description: Dumps the action event when set to true. For debug purposes.
+    description: Dumps the action event when set to true.
   ignore_actions:
     required: false
     default: ''

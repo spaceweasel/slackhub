@@ -4,6 +4,18 @@ inputs:
   channel:
     required: true
     description: Slack channel to send message to
+  fail_on_error:
+    required: false
+    default: 'false'
+    description: Used to mark the action as failed if an error occurs.
+  dump_event:
+    required: false
+    default: 'false'
+    description: Dumps the action event when set to true. For debug purposes.
+  ignore_actions:
+    required: false
+    default: ''
+    description: Processing will be ignored for any actions listed.
 runs:
   using: node16
   main: invoke-binary.js

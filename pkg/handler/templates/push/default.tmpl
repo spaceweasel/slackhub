@@ -10,7 +10,7 @@
 			"fields": [
 					{
 							"title": "",
-							"value":"««range  $i, $e := .Event.commits »»««if $i»»\n««end»»<««$e.url»»|`««ShortSHA $e.id»»`> - ««$e.message»»««end»»",
+							"value":"««range  $i, $e := .Event.commits »»««if $i»»\n««end»»<««$e.url»»|`««ShortSHA $e.id»»`> - ««SlackMarkdown $e.message»»««end»»",
 							"short": false
 					}
 			],

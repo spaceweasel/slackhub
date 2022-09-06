@@ -1,0 +1,38 @@
+{
+	"channel":"«« .Channel »»",
+	"attachments": [{
+		"mrkdwn_in": ["text","pretext","fields"],
+			"color": "#36a64f",
+			"pretext": "Pull request re-opened by <https://github.com/«« .Actor »»|«« .Actor »»>",
+			"title": "«« .Event.pull_request.title »»",
+			"title_link": "«« .Event.pull_request.html_url »»",
+			"text": "",
+			"fields": [
+					{
+							"title": "",
+							"value": "«« SlackMarkdown .Event.pull_request.body »»",
+							"short": false
+					},
+					{
+							"title": "Reviewers",
+							"value": "
+								««- range $i, $e := .Event.pull_request.requested_teams -»»
+									««if $i»», ««end»»<««$e.html_url»»|@««$.Event.organization.login»»/««$e.slug»»>
+								««- end -»»
+								««- if and .Event.pull_request.requested_team .Event.pull_request.requested_reviewers »», «« end -»»
+								««- range $i, $e := .Event.pull_request.requested_reviewers -»»
+									««if $i»», ««end»»<https://github.com/«« $e.login »»|«« $e.login »»>
+								««- end»»",
+							"short": true
+					},
+					{
+							"title": "Labels",
+							"value": "«« range $i, $e := .Event.pull_request.labels »»««if $i»», ««end»»«« $e.name »»««end»»",
+							"short": true
+					}
+			],
+			"footer": "<«« .Event.repository.html_url »»|«« .Event.repository.owner.login »»/«« .Event.repository.name »»>",
+			"footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+			"ts": «« AsTimestamp .Event.pull_request.updated_at »»
+	}]
+}

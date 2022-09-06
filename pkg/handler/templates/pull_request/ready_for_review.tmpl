@@ -3,7 +3,7 @@
 	"attachments": [{
 		"mrkdwn_in": ["text","pretext","fields"],
 			"color": "#36a64f",
-			"pretext": "Pull request opened by <https://github.com/«« .Actor »»|«« .Actor »»>",
+			"pretext": "Pull request by <https://github.com/«« .Actor »»|«« .Actor »»> is ready to review",
 			"title": "«« .Event.pull_request.title »»",
 			"title_link": "«« .Event.pull_request.html_url »»",
 			"text": "",
@@ -15,13 +15,19 @@
 					},
 					{
 							"title": "Reviewers",
-							"value":"««range .Event.pull_request.requested_teams »»<««.html_url»»|@««$.Event.organization.login»»/««.slug»»>\n««end -»»
-							««- range .Event.pull_request.requested_reviewers »»<https://github.com/«« .login »»|«« .login »»>\n««end»»",
+							"value": "
+								««- range $i, $e := .Event.pull_request.requested_teams -»»
+									««if $i»», ««end»»<««$e.html_url»»|@««$.Event.organization.login»»/««$e.slug»»>
+								««- end -»»
+								««- if and .Event.pull_request.requested_team .Event.pull_request.requested_reviewers »», «« end -»»
+								««- range $i, $e := .Event.pull_request.requested_reviewers -»»
+									««if $i»», ««end»»<https://github.com/«« $e.login »»|«« $e.login »»>
+								««- end»»",
 							"short": true
 					},
 					{
 							"title": "Labels",
-							"value": "«« range $i, $e := .Event.pull_request.labels »»««if $i»»\n««end»»«« $e.name »»««end»»",
+							"value": "«« range $i, $e := .Event.pull_request.labels »»««if $i»», ««end»»«« $e.name »»««end»»",
 							"short": true
 					}
 			],

@@ -1,0 +1,21 @@
+{
+	"channel":"«« .Channel »»",
+	"attachments": [{
+		"mrkdwn_in": ["text","pretext","fields"],
+			"color": "#36a64f",
+			"pretext": "Pull request <«« .Event.comment.html_url »»|comment> from <https://github.com/«« .Actor »»|«« .Actor »»>",
+			"title": "«« .Event.pull_request.title »»",
+			"title_link": "«« .Event.pull_request.html_url »»",
+			"text": "",
+			"fields": [
+					{
+							"title": "",
+							"value": "«« SlackMarkdown .Event.comment.body »»",
+							"short": false
+					}
+			],
+			"footer": "<«« .Event.repository.html_url »»|«« .Event.repository.owner.login »»/«« .Event.repository.name »»>",
+			"footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+			"ts": «« AsTimestamp .Event.comment.updated_at »»
+	}]
+}

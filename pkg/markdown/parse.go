@@ -7,6 +7,9 @@ import (
 	"strings"
 )
 
+// TODO: handle suggestions
+// if lang == suggestion, swap wih ```
+
 // Parse parses the github markdown to construct a slack markdown representation.
 func Parse(text string) (smd string, err error) {
 	p := &parser{

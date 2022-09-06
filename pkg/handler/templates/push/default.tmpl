@@ -1,0 +1,21 @@
+{
+	"channel":"«« .Channel »»",
+	"attachments": [{
+		"mrkdwn_in": ["text","pretext","fields"],
+			"color": "#24292f",
+			"pretext": "<««.Event.compare»»|««$length := len .Event.commits»»«« $length »» new commit««if gt $length 1»»s««end»»> pushed to <«« .Event.repository.html_url »»/tree/«« .Branch »»|`«« .Branch »»`> by <https://github.com/«« .Actor »»|«« .Actor »»>",
+			"title": "",
+			"title_link": "",
+			"text": "",
+			"fields": [
+					{
+							"title": "",
+							"value":"««range  $i, $e := .Event.commits »»««if $i»»\n««end»»<««$e.url»»|`««ShortSHA $e.id»»`> - ««$e.message»»««end»»",
+							"short": false
+					}
+			],
+			"footer": "<«« .Event.repository.html_url »»|«« .Event.repository.owner.login »»/«« .Event.repository.name »»>",
+			"footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+			"ts": «« AsTimestamp .Event.head_commit.timestamp »»
+	}]
+}

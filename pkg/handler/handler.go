@@ -36,6 +36,7 @@ type EventContext interface {
 	Name() string
 	Action() string
 	Event() any
+	Branch() string
 }
 
 func (h *Handler) Handle(ec EventContext) error {
@@ -44,6 +45,7 @@ func (h *Handler) Handle(ec EventContext) error {
 		Funcs(template.FuncMap{
 			"AsTimestamp":   AsTimestamp,
 			"SlackMarkdown": SlackMarkdown,
+			"ShortSHA":      ShortSHA,
 		}).
 		ParseFS(templates, fmt.Sprintf("templates/%s/%s.tmpl", ec.Name(), ec.Action()))
 	if err != nil {
@@ -68,11 +70,22 @@ func AsTimestamp(s string) int64 {
 	return ts.Unix()
 }
 
-func SlackMarkdown(s string) string {
+func SlackMarkdown(v any) string {
+	s, ok := v.(string)
+	if !ok {
+		return ""
+	}
 	md, err := markdown.Parse(s)
 	if err != nil {
 		log.Println(">>SlackMarkdown:", err)
 		return ""
 	}
 	return md
+}
+
+func ShortSHA(s string) string {
+	if len(s) > 8 {
+		return s[:8]
+	}
+	return s
 }

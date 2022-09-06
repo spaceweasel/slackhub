@@ -57,6 +57,7 @@ type testContext struct {
 	actor     string
 	eventName string // e.g. pull_request
 	event     any    // ["action"] == "opened"
+	branch    string
 }
 
 func (e *testContext) Channel() string {
@@ -75,6 +76,10 @@ func (e *testContext) Action() string {
 		}
 	}
 	return "default"
+}
+
+func (e *testContext) Branch() string {
+	return e.branch
 }
 
 func (e *testContext) Event() any {

@@ -159,10 +159,16 @@ func NewEventFilter() EventFilter {
 	f := EventFilter{
 		cond: []func(*EventContext) bool{
 			func(ec *EventContext) bool {
-				return ec.QualifiedAction() == "pull_request.opened" && ec.Get("draft") == true
+				if ec.QualifiedAction() != "pull_request.opened" {
+					return false
+				}
+				return ec.Get("draft") == true
 			},
 			func(ec *EventContext) bool {
-				return ec.QualifiedAction() == "pull_request.closed" && ec.Get("merged") == false
+				if ec.QualifiedAction() != "pull_request.closed" {
+					return false
+				}
+				return ec.Get("merged") == false
 			},
 			func(ec *EventContext) bool {
 				if ec.QualifiedAction() != "pull_request_review.submitted" {
@@ -172,12 +178,15 @@ func NewEventFilter() EventFilter {
 					return false
 				}
 
-				body := ec.Get("review.body")
-				return (body == nil || body == "")
+				body, _ := ec.Get("review.body").(string)
+				return body == ""
 			},
 			func(ec *EventContext) bool {
 				// ignore pushes unless to a branch (e.g. ignore tags)
-				return ec.Name() != "push" && ec.Branch() == ""
+				if ec.Name() != "push" {
+					return false
+				}
+				return ec.Branch() == ""
 			},
 		},
 	}

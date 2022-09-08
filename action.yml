@@ -16,6 +16,15 @@ inputs:
     required: false
     default: ''
     description: Processing will be ignored for any actions listed.
+  override_action:
+    required: false
+    default: ''
+    description: Overrides actual event action with one of the inbuilt pseudo actions.
+  override_action_inputs:
+    required: false
+    default: ''
+    description: Overrides actual event action with one of the inbuilt pseudo actions.
+    
 runs:
   using: node16
   main: invoke-binary.js

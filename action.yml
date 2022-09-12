@@ -8,23 +8,15 @@ inputs:
     required: false
     default: 'false'
     description: Used to mark the action as failed if an error occurs.
-  dump_event:
+  include_workflow_status:
     required: false
     default: 'false'
-    description: Dumps the action event when set to true.
+    description: Includes the overall workflow conclusion and status of individual jobs.
   ignore_actions:
     required: false
     default: ''
     description: Processing will be ignored for any actions listed.
-  override_action:
-    required: false
-    default: ''
-    description: Overrides actual event action with one of the inbuilt pseudo actions.
-  override_action_inputs:
-    required: false
-    default: ''
-    description: Overrides actual event action with one of the inbuilt pseudo actions.
-    
+
 runs:
   using: node16
   main: invoke-binary.js

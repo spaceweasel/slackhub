@@ -12,6 +12,11 @@ inputs:
     required: false
     default: 'false'
     description: Includes the overall workflow conclusion and status of individual jobs.
+  footer_icon:
+    required: false
+    default: 'https://slack.github.com/static/img/favicon-neutral.png'
+    description: A valid URL to an image that will be displayed beside the footer.
+
   ignore_actions:
     required: false
     default: ''

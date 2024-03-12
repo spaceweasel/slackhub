@@ -23,5 +23,5 @@ inputs:
     description: Processing will be ignored for any actions listed.
 
 runs:
-  using: node16
+  using: node20
   main: invoke-binary.js

@@ -10,7 +10,7 @@ import (
 
 	qt "github.com/frankban/quicktest"
 
-	"github.com/spaceweasel/slackhub/pkg/handler"
+	"github.com/fluffyspangle/slackhub/pkg/handler"
 )
 
 func TestHandler_Handle(t *testing.T) {

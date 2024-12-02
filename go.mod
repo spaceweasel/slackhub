@@ -1,4 +1,4 @@
-module github.com/spaceweasel/slackhub
+module github.com/fluffyspangle/slackhub
 
 go 1.19
 

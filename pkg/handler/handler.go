@@ -10,7 +10,7 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/spaceweasel/slackhub/pkg/markdown"
+	"github.com/fluffyspangle/slackhub/pkg/markdown"
 )
 
 //go:embed templates

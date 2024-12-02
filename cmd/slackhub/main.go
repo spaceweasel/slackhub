@@ -8,9 +8,9 @@ import (
 
 	"github.com/sethvargo/go-githubactions"
 
-	"github.com/spaceweasel/slackhub/pkg/config"
-	"github.com/spaceweasel/slackhub/pkg/handler"
-	"github.com/spaceweasel/slackhub/pkg/sender"
+	"github.com/fluffyspangle/slackhub/pkg/config"
+	"github.com/fluffyspangle/slackhub/pkg/handler"
+	"github.com/fluffyspangle/slackhub/pkg/sender"
 )
 
 type EventContext struct {

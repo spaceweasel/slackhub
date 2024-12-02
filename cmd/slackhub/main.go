@@ -116,6 +116,11 @@ func run(action *githubactions.Action) (err error) {
 		return fmt.Errorf("failed to get action context, %v", err)
 	}
 
+	if cfg.SkipBots && strings.HasSuffix(c.Actor, "[bot]") {
+		action.Infof("Skipping bot actor: %s", c.Actor)
+		return nil
+	}
+
 	ec := &EventContext{
 		channel:   cfg.Slack.Channel,
 		actor:     c.Actor,

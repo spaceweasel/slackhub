@@ -15,6 +15,7 @@ type Config struct {
 	DumpEvent       bool
 	PretextOverride string
 	IgnoreActions   map[string]bool
+	SkipBots        bool
 	Log             Logger
 }
 
@@ -31,6 +32,7 @@ func New(action *githubactions.Action) *Config {
 		FailOnError:   strings.EqualFold(action.GetInput("fail_on_error"), "true"),
 		DumpEvent:     strings.EqualFold(action.GetInput("dump_event"), "true"),
 		IgnoreActions: strToMap(action.GetInput("ignore_actions")),
+		SkipBots:      strings.EqualFold(action.GetInput("skip_bots"), "true"),
 		Log: logger{
 			failOnErr: strings.EqualFold(action.GetInput("fail_on_error"), "true"),
 			l:         action,

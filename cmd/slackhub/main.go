@@ -116,6 +116,9 @@ func run(action *githubactions.Action) (err error) {
 		return fmt.Errorf("failed to get action context, %v", err)
 	}
 
+	action.Infof("Actor: %s, skip_bots %s", c.Actor, cfg.SkipBots)
+	action.Infof("HasSuffix: %s", strings.HasSuffix(c.Actor, "[bot]"))
+
 	if cfg.SkipBots && strings.HasSuffix(c.Actor, "[bot]") {
 		action.Infof("Skipping bot actor: %s", c.Actor)
 		return nil

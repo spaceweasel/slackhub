@@ -16,11 +16,14 @@ inputs:
     required: false
     default: 'https://slack.github.com/static/img/favicon-neutral.png'
     description: A valid URL to an image that will be displayed beside the footer.
-
   ignore_actions:
     required: false
     default: ''
     description: Processing will be ignored for any actions listed.
+  skip_bots:
+    required: false
+    default: 'true'
+    description: Processing will be skipped for bot actors.
 
 runs:
   using: node20
